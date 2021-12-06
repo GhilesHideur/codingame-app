@@ -108,7 +108,7 @@ public class UserController {
 	@PostMapping(value = { "/", "" })
 	public ResponseEntity<User> createNewUser(@Valid @RequestBody User user) {
 		if (user.getAge() < 18 && user.getCountry().equalsIgnoreCase("france")) {
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Access prohibited to minors");
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Access prohibited");
 		}
 		
 		User result = this.userService.saveUser(user);

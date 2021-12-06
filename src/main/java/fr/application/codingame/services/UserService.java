@@ -23,7 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.application.codingame.aspects.Log;
-import fr.application.codingame.aspects.SecuredByAspect;
 import fr.application.codingame.database_api.UserRepository;
 import fr.application.codingame.error.NotFoundException;
 import fr.application.codingame.models.User;
@@ -48,7 +47,6 @@ public class UserService {
 	 * @return user
 	 */
 	@Log
-	@SecuredByAspect(roles={"Admin"})
 	public User saveUser(User user) {
 		return this.userRepository.insert(user); 
 	}
@@ -58,6 +56,7 @@ public class UserService {
 	 * 
 	 * @return List of Users
 	 */
+	@Log
 	public List<User> getUsers() {
 		return this.userRepository.findAll();
 	}
@@ -70,6 +69,7 @@ public class UserService {
 	 * @exception NoSuchElementException
 	 * @throws NotFoundException
 	 */
+	@Log
 	public User getUser(String id) {
 		try {
 			return this.userRepository.findById(id).get();
@@ -83,6 +83,7 @@ public class UserService {
 	 * 
 	 * @param id
 	 */
+	@Log
 	public void detelet(String id) {
 		this.userRepository.deleteById(id);
 	}

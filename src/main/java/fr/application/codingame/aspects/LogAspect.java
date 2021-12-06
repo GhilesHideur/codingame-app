@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -22,6 +21,7 @@ public class LogAspect {
 		this.logger.addHandler(new FileHandler("log.xml"));
 		logger.setUseParentHandlers(false);
 	}
+	
 
 	@Around(value = "@annotation(fr.application.codingame.aspects.Log)")
 	public Object log(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
